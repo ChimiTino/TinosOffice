@@ -85,8 +85,8 @@ function Claims({params}) {
     const [ messeges, setMessages] = useState([]);
     const[seleJob, setSeleJob] = useState()
     const[filterdJobs, setFilterdJob] = useState([])
-    const[avatar, setGetAva] = useState("")
-    const[authName, setAuthName] = useState("")
+    // const[avatar, setGetAva] = useState("")
+    // const[authName, setAuthName] = useState("")
 
     const[urgant, setUrgant] = useState([])
     const[recodedJobs, setRecordedJobs] = useState([])
@@ -124,13 +124,13 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
         '$autoCancel': false,
         expand:""
     });
-  const getAvatar = await pb.collection('users').getOne(id , {
-    '$autoCancel': false,
-        expand:'avatar'
-  })
+  // const getAvatar = await pb.collection('users').getOne(id , {
+  //   '$autoCancel': false,
+  //       expand:'avatar'
+  // })
 
-      setGetAva(i => getAvatar.avatar)
-      setAuthName(i => getAvatar.name)
+  //     setGetAva(i => getAvatar.avatar)
+  //     setAuthName(i => getAvatar.name)
       setSeleJob(recordedMess)
       setLoading(i => false)
 
@@ -1054,9 +1054,9 @@ async function DeletEBF(items){
         <div className={stylesclaims.leftChanel}>
         <div className={stylesclaims.profilestation}>
         {/* add profilepic */}
-          <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
+          {/* <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
           
-           <h2>{authName}</h2>
+           <h2>{authName}</h2> */}
            {params.id[0] === 'everlight' && 
            <div className='leftmar'>
          <div className={stylesclaims.jopbBussiness1}>

@@ -69,6 +69,8 @@ function Claims({params}) {
         setLoading(false)
       
   }
+
+  
   const ChangeFilter = (item)=> {
     
     const WorkersJob = recodedJobs?.filter(i=> i.workers_on_job[0] === params.id[0]) 
