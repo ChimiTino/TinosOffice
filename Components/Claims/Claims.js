@@ -178,7 +178,7 @@ const ChangeFilter = (item)=> {
         <div className={stylesclaims.leftChanel}>
         <div className={stylesclaims.profilestation}>
         {/* add profilepic */}
-          <img className={stylesclaims.avatar} src={`http://127.0.0.1:8090/api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
+          <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
            <h2>{pb.authStore.model.name}</h2>
            {params.slug === 'everlight' && 
            <div className='leftmar'>

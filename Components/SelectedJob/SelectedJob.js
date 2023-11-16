@@ -812,7 +812,7 @@ async function DeletEBF(items){
                     <div className={stylesseleJobs.fileCont}>
                    
                       <Link target="_blank"
-                       href={`http://127.0.0.1:8090/api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.invoice[0]}?token=`
+                       href={`https://panicky-lion.pockethost.io//api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.invoice[0]}?token=`
                        } 
                       
                       className={stylesseleJobs.trufile}
@@ -850,7 +850,7 @@ async function DeletEBF(items){
                     
                     <div className={stylesseleJobs.fileCont}>
                    
-                       <Link target="_blank" href={`http://127.0.0.1:8090/api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.quote[0]}?token=`} 
+                       <Link target="_blank" href={`https://panicky-lion.pockethost.io//api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.quote[0]}?token=`} 
                        
                        className={stylesseleJobs.trufile}
                        >
@@ -888,7 +888,7 @@ async function DeletEBF(items){
                     
                     <div className={stylesseleJobs.fileCont}>
                    
-                      <Link target="_blank" href={`http://127.0.0.1:8090/api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.damage_report[0]}?token=`} 
+                      <Link target="_blank" href={`https://panicky-lion.pockethost.io//api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.damage_report[0]}?token=`} 
                       
                       className={stylesseleJobs.trufile}
                       > <div  title={seleJob.damage_report[0]}><BsIcons.BsFiles className={stylesseleJobs.icons}/> {seleJob.damage_report[0]}</div>
@@ -924,7 +924,7 @@ async function DeletEBF(items){
                     
                     <div className={stylesseleJobs.fileCont}>
                    
-                      <Link target="_blank" href={`http://127.0.0.1:8090/api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.coc[0]}?token=`} 
+                      <Link target="_blank" href={`https://panicky-lion.pockethost.io//api/files/${seleJob.collectionId}/${seleJob.id}/${seleJob.coc[0]}?token=`} 
                       
                       className={stylesseleJobs.trufile}
                       >
@@ -972,7 +972,7 @@ async function DeletEBF(items){
                               <p className={stylesseleJobs.DelIm}><BiIcons.BiX onClick={()=> DeletEBF(items)}/></p>
                                 <div className={stylesseleJobs.photoCont}>
                                       <img className={stylesseleJobs.bImges}
-                                      src={`http://127.0.0.1:8090/api/files/${seleJob.collectionId}/${seleJob.id}/${items}?token=`}/>
+                                      src={`https://panicky-lion.pockethost.io//api/files/${seleJob.collectionId}/${seleJob.id}/${items}?token=`}/>
                                                                     
                                 </div>
                                 <p className={stylesseleJobs.titleImg}>
@@ -1005,7 +1005,7 @@ async function DeletEBF(items){
                               <p className={stylesseleJobs.DelIm}><BiIcons.BiX onClick={()=> DeletEAF(items)}/></p>
                                 <div className={stylesseleJobs.photoCont}>
                                       <img className={stylesseleJobs.bImges}
-                                      src={`http://127.0.0.1:8090/api/files/${seleJob.collectionId}/${seleJob.id}/${items}?token=`}/>
+                                      src={`https://panicky-lion.pockethost.io//api/files/${seleJob.collectionId}/${seleJob.id}/${items}?token=`}/>
                                                                     
                                 </div>
                                 <p className={stylesseleJobs.titleImg}>
@@ -1036,7 +1036,7 @@ async function DeletEBF(items){
         <div className={stylesclaims.leftChanel}>
         <div className={stylesclaims.profilestation}>
         {/* add profilepic */}
-          <img className={stylesclaims.avatar} src={`http://127.0.0.1:8090/api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
+          <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
            <h2>{pb.authStore.model.name}</h2>
            {params.id[0] === 'everlight' && 
            <div className='leftmar'>
