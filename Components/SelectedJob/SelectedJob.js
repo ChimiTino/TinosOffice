@@ -33,8 +33,8 @@ const status =[
 
 
 function Claims({params}) {
-    const avatar = pb.authStore.model?.avatar  
     const id = pb.authStore.model?.id
+
 
     const [clientnumberV, setclientnumberV] = useState();
     const [eClientnumber, setEClientnumber] = useState(false);
@@ -85,6 +85,9 @@ function Claims({params}) {
     const [ messeges, setMessages] = useState([]);
     const[seleJob, setSeleJob] = useState()
     const[filterdJobs, setFilterdJob] = useState([])
+    const[avatar, setGetAva] = useState("")
+    const[authName, setAuthName] = useState("")
+
     const[urgant, setUrgant] = useState([])
     const[recodedJobs, setRecordedJobs] = useState([])
     const[competed, setCompleted] = useState([])
@@ -121,6 +124,13 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
         '$autoCancel': false,
         expand:""
     });
+  const getAvatar = await pb.collection('users').getOne(id , {
+    '$autoCancel': false,
+        expand:'avatar'
+  })
+
+      setGetAva(i => getAvatar.avatar)
+      setAuthName(i => getAvatar.name)
       setSeleJob(recordedMess)
       setLoading(i => false)
 
@@ -148,7 +158,6 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
     }
 
  
-    
     
     
 
@@ -181,6 +190,14 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
     GetJob()
     
   },[]);
+
+
+  useEffect(()=>{
+    
+    Workers()
+    
+  },[]);
+
   
   
     async function MakeAfterImages(e){
@@ -203,104 +220,105 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
     }
 
 
-    async function EditClientNumber(clientnumberV){  
-      if(!clientnumberV){
-          alert("Please fill in the New Client Number")
-      }else{
-        const data = {
-          "clientnumber": clientnumberV,
+  async function EditClientNumber(clientnumberV){  
+    if(!clientnumberV){
+        alert("Please fill in the New Client Number")
+    }else{
+      const data = {
+        "clientnumber": clientnumberV,
+    };
+    const record = await pb.collection('jobs').update(params.id[1], data);
+    setEClientnumber(false)
+      
+    }
+  }
+  async function EditClient(clientV){
+    if(!clientV){ 
+        alert("Please fill in the New Client")
+    }
+    else{
+      const data = {
+        "client": clientV,
       };
-      const record = await pb.collection('jobs').update(params.id[1], data);
-      setEClientnumber(false)
-       
-      }
+    const record = await pb.collection('jobs').update(params.id[1], data);
+    setEClient(false)
     }
-    async function EditClient(clientV){
-      if(!clientV){ 
-         alert("Please fill in the New Client")
-      }
-      else{
-       const data = {
-          "client": clientV,
-        };
-      const record = await pb.collection('jobs').update(params.id[1], data);
-      setEClient(false)
-      }
-     
+    
+  }
+  async function EditAddress(addressV){
+    if(!addressV){
+      alert("Please fill in the New Address")
+        
     }
-    async function EditAddress(addressV){
-      if(!addressV){
-        alert("Please fill in the New Address")
-         
-      }
-      else{
+    else{
+      const data = {
+            "address": addressV,
+          };
+        const record = await pb.collection('jobs').update(params.id[1], data);
+        setEaddress(false)
+    }
+        
+  }
+  async function EditClaimProvider(claimProviderV){
+    if (!claimProviderV) {
+      alert("Please fill in the New Claim Provider")
+    }else{
+      const data = { 
+            "claim_provider": claimProviderV,
+          };
+        const record = await pb.collection('jobs').update(params.id[1], data);
+        setEclaimProvider(false)
+    }
+        
+  }
+  async function EditclaimHandler(claimHandlerV){
+    if (!claimHandlerV) {
+      alert("Please fill in the New Claim Handler")
+    } else {
         const data = {
-              "address": addressV,
+              "claim_handler": claimHandlerV,
             };
           const record = await pb.collection('jobs').update(params.id[1], data);
-          setEaddress(false)
-      }
-         
+          setEclaimHandler(false)
     }
-    async function EditClaimProvider(claimProviderV){
-      if (!claimProviderV) {
-        alert("Please fill in the New Claim Provider")
-      }else{
-        const data = { 
-              "claim_provider": claimProviderV,
+        
+  }
+  async function EditjobDescription(jobDescriptionV){
+    if (!jobDescriptionV) {
+      alert("Please fill in the New Job Description")
+    } else {
+        const data = {
+              "job_description": jobDescriptionV,
             };
           const record = await pb.collection('jobs').update(params.id[1], data);
-          setEclaimProvider(false)
-      }
-          
+          setEjobDescription(false)
     }
-    async function EditclaimHandler(claimHandlerV){
-      if (!claimHandlerV) {
-        alert("Please fill in the New Claim Handler")
-      } else {
-          const data = {
-                "claim_handler": claimHandlerV,
-              };
-            const record = await pb.collection('jobs').update(params.id[1], data);
-            setEclaimHandler(false)
-      }
-          
+        
+  }
+  async function EditProminantCause(ProminantCauseV){
+    if (!ProminantCauseV) {
+      alert("Please fill in the Prominant Cause")
+    } else {
+        const data = {
+              "excess_amount": ProminantCauseV,
+            };
+          const record = await pb.collection('jobs').update(params.id[1], data);
+          setEProminantCause(false)
     }
-    async function EditjobDescription(jobDescriptionV){
-      if (!jobDescriptionV) {
-        alert("Please fill in the New Job Description")
-      } else {
-          const data = {
-                "job_description": jobDescriptionV,
-              };
-            const record = await pb.collection('jobs').update(params.id[1], data);
-            setEjobDescription(false)
-      }
-          
-    }
-    async function EditProminantCause(ProminantCauseV){
-      if (!ProminantCauseV) {
-        alert("Please fill in the Prominant Cause")
-      } else {
-          const data = {
-                "excess_amount": ProminantCauseV,
-              };
-            const record = await pb.collection('jobs').update(params.id[1], data);
-            setEProminantCause(false)
-      }
-          
-    }
-    async function EditExcess(excessV){
-      if (!excessV) {
-        alert("Please fill in the Excess")
-      } else {
-          const data = {
-                "excess_amount": excessV,
-              };
-            const record = await pb.collection('jobs').update(params.id[1], data);
-            setEexcess(false)
-      }    
-    }
+        
+  }
+  async function EditExcess(excessV){
+    if (!excessV) {
+      alert("Please fill in the Excess")
+    } else {
+        const data = {
+              "excess_amount": excessV,
+            };
+          const record = await pb.collection('jobs').update(params.id[1], data);
+          setEexcess(false)
+    }    
+  }
+
 
 
   async function EditInvoice(invoice){
@@ -477,6 +495,7 @@ async function DeletEBF(items){
   const timeDiffD = Math.round(msDiff / (24 * 60 * 60 * 1000 )) 
   const hoursD = Math.round(msDiff / ( 60 * 60 * 1000 ))
   const weeksDiffD = Math.round(timeDiffD/7)
+
 
     return (
       <> 
@@ -1036,7 +1055,8 @@ async function DeletEBF(items){
         <div className={stylesclaims.profilestation}>
         {/* add profilepic */}
           <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
-           <h2>{pb.authStore.model.name}</h2>
+          
+           <h2>{authName}</h2>
            {params.id[0] === 'everlight' && 
            <div className='leftmar'>
          <div className={stylesclaims.jopbBussiness1}>
@@ -1061,7 +1081,7 @@ async function DeletEBF(items){
         filter that shows the jobs with the same id as the worker
         e.g fillter* i.id === filterdJobs.worker.id if this works it should hopefully
          */}
-          {workers?.map((items,index)=>{
+          {/* {workers?.map((items,index)=>{
         
             return(
               <div key={index} className={stylesclaims.workerContainer}>
@@ -1091,7 +1111,7 @@ async function DeletEBF(items){
 
               </div>
             )
-          })}
+          })} */}
 
         </div>
         

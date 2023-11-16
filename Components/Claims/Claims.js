@@ -31,7 +31,6 @@ const status =[
 
 
 function Claims({params}) {
-    const avatar = pb.authStore.model?.avatar  
     const id = pb.authStore.model?.id
     const[addJob, setAddJob] = useState(false)
     const[filterdJobs, setFilterdJob] = useState([])
@@ -44,6 +43,9 @@ function Claims({params}) {
     const todaysDateIm =todaysDate.getTime();
     const { data: messeges} = GetMessages();
     const { data: workers} = GetWorker();
+    
+    const[avatar, setGetAva] = useState("")
+    const[authName, setAuthName] = useState("")
     // const { data: recordedJobs} = GetJobs()
     const {register, handleSubmit, reset} = useForm();
     const [pdf, setPdf] = useState(data?.quote);
@@ -95,6 +97,7 @@ function Claims({params}) {
          sort: '-created',
             });
       setRecordedJobs(recordedJobs)
+
     
       const filter = recordedJobs?.filter(i => i.business === params.slug && i.job_completion === false)
        setFilterdJob(filter);
@@ -103,9 +106,21 @@ function Claims({params}) {
        setUrgant(urgant);
       const completed = recordedJobs?.filter(i => i.job_completion === true && i.business === params.slug)
        setCompleted(completed);
-       setLoading(false)
+      
 
+
+       const getAvatar = await pb.collection('users').getOne(id , {
+        '$autoCancel': false,
+            expand:'avatar'
+      })
+    
+          setGetAva(i => getAvatar.avatar)
+          setAuthName(i => getAvatar.name)
+ setLoading(false)
   }
+
+
+
   pb.collection('jobs').subscribe('*',  function (e) {
     Filters()
 },
@@ -178,8 +193,9 @@ const ChangeFilter = (item)=> {
         <div className={stylesclaims.leftChanel}>
         <div className={stylesclaims.profilestation}>
         {/* add profilepic */}
-          <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
-           <h2>{pb.authStore.model.name}</h2>
+        <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
+          
+          <h2>{authName}</h2>
            {params.slug === 'everlight' && 
            <div className='leftmar'>
          <div className={stylesclaims.jopbBussiness1}>

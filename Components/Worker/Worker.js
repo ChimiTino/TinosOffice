@@ -27,7 +27,6 @@ const status =[
  ]
  
 function Claims({params}) {
-    const avatar = pb.authStore.model?.avatar  
     const id = pb.authStore.model?.id
     const[filterdJobs, setFilterdJob] = useState([])
     const[recodedJobs, setRecordedJobs] = useState([])
@@ -35,10 +34,12 @@ function Claims({params}) {
     const todaysDateIm =todaysDate.getTime()
     const { data: messeges} = GetMessages()
     const { data: workers} = GetWorker()
-    const [work, setWork] = useState()
-    const [WorkersJob,setWorkersJob] = useState([])
-    const [addtog, setAddTog] = useState(false)
-    const [Loading, setLoading] = useState(false)
+    const [work, setWork] = useState();
+    const [WorkersJob,setWorkersJob] = useState([]);
+    const [addtog, setAddTog] = useState(false);
+    const [Loading, setLoading] = useState(false);
+    const[avatar, setGetAva] = useState("");
+    const[authName, setAuthName] = useState("");
 
   
       async function Filters() {
@@ -55,6 +56,16 @@ function Claims({params}) {
 
         const WorkersJob = recordedJobs?.filter(i=> i.workers_on_job[0] === params.id[0]) 
         setWorkersJob(WorkersJob)
+
+
+        
+       const getAvatar = await pb.collection('users').getOne(id , {
+        '$autoCancel': false,
+            expand:'avatar'
+      })
+    
+          setGetAva(i => getAvatar.avatar)
+          setAuthName(i => getAvatar.name)
         setLoading(false)
       
   }
@@ -200,8 +211,9 @@ function Claims({params}) {
             <div className={stylesclaims.leftChanel}>
             <div className={stylesclaims.profilestation}>
             {/* add profilepic */}
-              <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
-              <h2>{pb.authStore.model.name}</h2>
+            <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
+          
+          <h2>{authName}</h2>
               {params.id[1] === 'everlight' && 
               <div className='leftmar'>
             <div className={stylesclaims.jopbBussiness1}>

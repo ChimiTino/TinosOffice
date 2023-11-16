@@ -150,9 +150,13 @@ margin-bottom: 2vw;
     height: 5vw;
     border-radius: 50%;
 
+
 }
 .avatar{
     width: 5vw;
+    border-radius: 50%;
+    margin-top: 1vw;
+    border: 1px black solid;
 }
 .InitialForm{
   position: fixed;
