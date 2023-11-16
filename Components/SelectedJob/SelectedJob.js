@@ -149,12 +149,8 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
 
  
     
-    pb.collection('jobs').subscribe( `${params.id[1]}`, function (e) {
-      GetJob()
-    },[]);
-    pb.collection('workers').subscribe('*', function (e) {
-    Workers()
-    },[]);
+    
+    
 
  
     async function SendNotes(data){
@@ -179,8 +175,11 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
   },[seleJob])
 
   useEffect(()=>{
+    pb.collection('jobs').subscribe( `${params.id[1]}`, function (e) {
+      GetJob()
+    },[]);
     GetJob()
-  
+    
   },[]);
   
   
