@@ -1,0 +1,623 @@
+.maincontainer{
+    display: flex;
+}
+.workerflex{
+    display: flex;
+    background-color: rgb(232, 232, 232);
+    margin: 0.5vw;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.bodyload{
+    margin: 1vw;
+    height: 35vw;
+    width: 90%;
+    margin-left: 5%;
+    animation-name: load;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    border-radius: 1vw;
+}
+.headerload{
+    margin: 1vw;
+    height: 5vw;
+    width: 90%;
+    margin-left: 5%;
+    animation-name: load;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;    border-radius: 5vw;
+}
+.workerflexs{
+    display: flex;
+    background-color: rgb(232, 232, 232);
+    margin: 0.5vw;
+    height: 4vw;
+    margin-top: 1vw;
+    animation-name: load;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+    transition: 0.3s;
+    cursor: pointer;
+}
+@keyframes load {
+    0% {background-color:rgb(232, 232, 232) ;}
+    50% {background-color:rgb(192, 192, 192) ;}
+    100% {background-color:rgb(232, 232, 232) ;}
+}
+.workerflex h4{
+    padding: 1vw;
+}
+.workerflex p{
+   
+    font-weight: 600;
+    font-size: 0.9vw;
+}
+.workerflex:hover{
+    background-color: rgb(226, 226, 226);
+    transition: 0.3s;
+}
+.workerContainer h2,.urgantJobs h2,.doneJobs h2,.workersjobs h2{
+    margin: 1vw;
+    font-weight: 600;
+    color: black;
+}
+.workerContainer h4,.urgantJobs h4,.doneJobs h4,.workersjobs h4{
+    font-weight: 400;
+}
+.JobsList{
+    margin: 1vw;
+    padding: 1vw;
+    background-color: rgba(220, 0, 0, 0.148);
+    margin: 0.5vw;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.JobsList:hover{
+    background-color: rgba(220, 0, 0, 0.238);
+    transition: 0.3s;
+}
+.finishedJobs{
+    margin: 1vw;
+    padding: 1vw;
+    background-color: rgba(3, 151, 0, 0.148);
+    margin: 0.5vw;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.finishedJobs:hover{
+    background-color: rgba(3, 151, 0, 0.23);
+    transition: 0.3s;
+}
+.urgantJobs h5, .finishedJobs h5,.workersjobs h5{
+    font-weight: 400;
+}
+.urgantJobs h6,.finishedJobs h6,.workersjobs h6{
+    font-weight: 400;
+}
+.workerContainer{
+    padding-bottom: 1vw;
+}
+.workerContainer:focus{
+    outline: 1px solid;
+}
+.workersjobs{
+    margin: 1vw;
+    padding: 1vw;
+    background-color: rgba(170, 170, 170, 0.148);
+    margin: 0.5vw;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.leftChanel{
+    width: 25%;
+    /* padding: 1vw; */
+    position:fixed;
+    overflow-y: scroll;
+    background-color: rgba(234, 234, 234, 0.759);
+    z-index: 10;
+    height: 100%;
+    border-right: 1px rgba(177, 177, 177, 0.323) solid;
+}
+.profilestation{
+    text-align: center;
+    padding-bottom: 2vw;
+    background-size: 160%;
+    background-image: url('https://images.unsplash.com/photo-1562043236-559c3b65a6e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGFuZHNjYXBlc3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80');
+}
+.profilestation h2{
+margin-top: 1vw;
+font-weight: 600;
+color: white;
+}
+.profilestation p{
+margin-top: 1vw;
+font-weight: 200;
+color: white;
+margin-bottom: 2vw;
+}
+.avatarl{
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+
+}
+.avatar{
+    width: 5vw;
+}
+.InitialForm{
+  position: fixed;
+  overflow-y: scroll;
+  margin-top: 3vw;
+  height: 70%;
+}
+.jobHeader{
+    display: flex;
+    width: 100%;
+}
+.clientrow{
+    display: flex;
+    line-height: 2vw;
+}
+.detailsflex{
+    margin: 2vw;
+    margin-top: 2vw;
+    display: flex;
+}
+.clientrow p{
+   margin-left: 2vw;
+    width: 11vw;
+    font-size: 0.8vw;
+}
+.jobDescription p{
+    font-size: 0.8vw;
+    margin-top: 0.5vw;
+}
+.clienttitels{
+   font-size: 0.9vw;
+   width: 8vw;
+   font-weight: 500;
+}
+.jobDescription{ 
+    margin-left: 2vw;
+    background-color: rgba(0, 0, 0, 0.047);
+    padding: 1vw;
+    height:6vw;
+    overflow-y: scroll;
+    margin-top: -1vw;
+    border-radius: 0.5vw;
+    width: 13vw;
+}
+.jobCardUrgant{
+    margin: 2vw;
+    padding: 1vw;
+    border-radius: 1vw;
+    border-top: 4px rgb(55, 55, 55) solid;
+    background-color: rgba(234, 234, 234, 0.664);
+    border-bottom: 1px rgb(197, 197, 197) solid;
+}
+.filterback{
+    margin: 2vw;
+    padding: 1vw;
+    border-radius: 1vw;
+    border-top: 4px rgb(55, 55, 55) solid;
+    background-color: rgba(234, 234, 234, 0.664);
+    border-bottom: 1px rgb(197, 197, 197) solid;
+    filter: blur(8px);
+
+}
+
+.jobCard{
+    margin: 2vw;
+    padding: 1vw;
+    border-radius: 1vw;
+    border-top: 4px rgb(125, 125, 125) solid;
+    background-color: rgba(234, 234, 234, 0.664);
+    border-bottom: 1px rgb(183, 183, 183) solid;
+}
+.filterCont{
+    background-color: rgb(69, 69, 69);
+    position: absolute;
+    color: white;
+    list-style: none;
+    padding: 0.5vw;
+    margin-top: 1vw;
+    transition: 0.3s;
+    border-radius: 0.5vw;
+    z-index:31;
+}
+.filterContnone{
+    z-index:-1;
+    transform: translateY(-10vw);
+    background-color: rgb(69, 69, 69);
+    position: absolute;
+    color: white;
+    opacity: 0;
+    list-style: none;
+    padding: 0.5vw;
+    margin-top: 1vw;
+    transition: 0.1s;
+    border-radius: 0.5vw;
+}
+.filterCont li{
+    padding: 0.5vw;
+    transition: 0.3s;
+    font-size: 0.9vw;
+    cursor: pointer;
+
+}
+.filterContnone li{
+    padding: 0.5vw;
+    transition: 0.3s;
+    font-size: 0.9vw;
+    cursor: pointer;
+
+}
+.filterCont li:hover{
+  background-color: rgb(27, 27, 27);
+  border-radius: 3vw;
+  transition: 0.3s;
+}
+.jobCardFlex{
+    display: flex;
+    justify-content: space-between;
+}
+.details{
+    width: 100%;
+}
+.messegesContainer{
+    width: 70%;
+}
+.mainChanel{
+    margin-left:27%;
+    width: 80%;
+}
+.mainChanelloading{
+    margin-left:27%;
+    width: 73%;
+}
+.workericon{
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    border: 1px solid grey;
+}.noDis{
+    display: none;
+}
+.jobWorker{
+   display: flex;
+   background-color: white;
+   padding: 0.3vw;
+   cursor: pointer;
+   padding-right: 2.5vw;
+   border-radius: 5vw;
+   box-shadow: 1px 1px 2px 0px rgb(204, 204, 204);
+}
+.workerName{
+    font-weight: 500;
+    margin-left: 1vw;
+    padding-top: 0.2vw;
+    font-size: 0.9vw;
+
+}
+
+.jobweeks{
+    font-size: 1vw;
+    margin: 0vw;
+    font-weight: 500;
+    color: rgb(73, 73, 73);
+    padding: 0.3vw;
+    margin-left: 4vw;
+}
+.messegesContainer{
+    background-color: rgba(0, 0, 0, 0.758);
+    margin-left: 1vw;
+    border-radius: 0.5vw;
+    height: 12vw;
+}
+.messeges{
+    overflow-y: scroll;
+    height: 70%;
+    
+}
+.messegesContainer h5{
+    color: rgba(255, 255, 255, 0.804);
+    font-size: 1.1vw;
+    font-weight: 500;
+    height: 10%;
+    padding: 1vw;
+   
+}
+.messageheader{
+    display: flex;
+    justify-content: space-between;
+}
+.messege{
+    background-color: rgba(255, 255, 255, 0.884);
+    margin: 1vw;
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+}
+.messName{
+    font-size: 1vw;
+    font-weight: 600;
+    display: flex;
+}
+.messageheader p{
+    font-size: 0.8vw;
+}
+.messText{
+    font-size: 0.9vw;
+    font-weight: 400;
+    color: rgb(79, 79, 79);
+    margin-top: 0.4vw;
+    margin-left: 0.5vw;
+    padding-bottom: 0.5vw;
+}
+.buttonList{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -1vw;
+}
+.view{
+    padding: 0.4vw;
+    border-radius: 6vw;
+    border: none;
+    font-family: 'Pathway Extreme', sans-serif;
+    color: white;
+    width: 8vw;
+    margin-left: 1vw;
+    background-color: rgb(170, 170, 170);
+
+}
+.edit{
+    padding: 0.4vw;
+    border-radius: 6vw;
+    border: none;
+    margin-left: 0.5vw;
+    color: white;
+    width: 5vw;
+    background-color:  rgb(206, 206, 206);
+}
+.notes{
+    width: 25vw;
+    padding: 0.4vw;
+    border-radius: 6vw;
+    border: none;
+    margin-left: 0.5vw;
+    color: rgb(255, 255, 255);
+    background-color: rgb(105, 105, 105);
+   
+}
+.searchflex{
+    display: flex;
+    padding: 0.5vw;
+    background-color: rgb(239, 239, 239);
+    border-radius: 10vw;
+    padding-left: 2vw;
+    width: 70%;
+    margin-right: 2vw;
+
+}
+.time{
+    font-size: 1vw;
+    padding: 0.5vw;
+}
+.searchflex input{
+    border: none;
+    color: black;
+    width: 100%;
+    font-size: 1vw;
+    margin-left: 2vw;
+    background-color: transparent;
+}
+.filterblock{
+    display: none;
+
+    flex-direction: column;
+    position: absolute;
+}
+.searchname{
+    font-weight: 500;
+    font-size: 1vw;
+    padding: 0.4vw;
+}
+.topToolbar{
+    display: flex;
+    margin: 2vw;
+}
+.filterbtn{
+    padding: 0.8vw;
+    border-radius: 10vw;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.719);
+    border: none;
+    margin-right: 1vw;
+    color: rgba(255, 255, 255, 0.911);
+    width: 7vw;
+    font-size: 0.9vw;
+}
+.addJobbtn{
+    border-radius: 10vw;
+    width: 8vw;
+    font-size: 0.9vw;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.903);
+    border: none;
+    font-weight: 600;
+}
+.jobWorkersele{
+    display: flex;
+    background-color: white;
+    padding: 0.3vw;
+    margin-top: 0.5vw;
+    padding-right: 2.5vw;
+    border-radius: 5vw;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.jobWorkersele:hover{
+    display: flex;
+    background-color: rgb(241, 241, 241);
+    padding: 0.3vw;
+    margin-top: 0.5vw;
+    padding-right: 2.5vw;
+    border-radius: 5vw;
+    transition: 0.3s;
+}
+.status{
+    display: flex;
+    width: 17vw;
+    margin-left: 3vw;
+}
+.status p{
+    color: rgb(255, 152, 50);
+    font-size: 0.85vw;
+    padding: 0.7vw;
+    border-radius: 3vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+.status h3{
+    font-size: 1vw;
+    padding: 0.6vw;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.InitialForm{
+    background-color: rgb(248, 248, 248);
+    padding: 3vw;
+    border-radius: 0.6vw;
+    width: 50%;
+    margin-left: 8%;
+    z-index: 3;
+}
+.exit{
+    padding: 1vw;
+    font-size: 1.5vw;
+    width: 10%;
+    margin-left: 86%;
+    text-align: right;
+    cursor: pointer;
+    margin-top: -2vw;
+    
+}
+.label{
+    width: 19vw;
+}
+.select{
+    padding: 0vw;
+}
+.option{
+    padding: 1vw;
+}
+.h2{
+    width: 9vw;
+    padding: 0.5vw;
+    font-weight: 500;
+    font-size: 1vw;
+}
+.workList{
+    background-color: white;
+    margin-top: 1vw;
+    padding: 0.5vw;
+   
+    border-radius: 0.3vw;
+
+}
+.option{
+    border-radius: 5vw;
+    cursor: pointer;
+}
+.option:hover{
+    background-color: rgba(0, 0, 0, 0.025);
+}
+.select:hover .workList{
+    display: block;
+  }
+  .workerH{
+    display: flex;
+    margin-top: 2vw;
+  }
+  .submitbtn{
+    margin-top: 2vw;
+    padding: 1vw;
+    border: none;
+    transition: 0.3s;
+    background-color: rgba(0, 0, 0, 0.699);
+    color: rgba(255, 255, 255, 0.905);
+    border-radius: 10vw;
+  }
+  .submitbtn:hover{
+    background-color: rgba(0, 0, 0, 0.451);
+    transition: 0.3s;
+  }
+  .jopbBussiness1{
+    margin-left: 3vw;
+    display: flex;
+    margin-top: 1vw;
+    background-color: rgba(255, 255, 255, 0.719);
+    
+    width: 15vw;
+    border: 1px solid black;
+    border-radius: 10vw;
+    padding: 0.2vw;
+  }
+  .jopbBussiness{
+ display: flex;
+  }
+  .formHead{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3vw;
+  }
+  .formHead h1{
+    padding: 0.5vw;
+  }
+  .akxkx{
+    font-size: 0.6vw;
+    font-weight: 400;
+    padding-top: 0.3vw;
+    width: 70%;
+  }
+  .formimgs{
+    width: 2.5vw;
+    border-radius: 50%;
+     }
+  .formimg{
+ width: 4vw;
+ border-radius: 50%;
+  }
+  .jobfor{
+    font-size: 0.8vw;
+    font-weight: 300;
+   
+  }
+  .jopbBussiness h3{
+    font-size: 1vw;
+    padding-left: 1vw;
+
+  }
+  
+  .jopbBussiness1 h3{
+    font-size: 0.8vw;
+    padding-left: 1vw;
+
+  }
+  .jopbBussiness{
+    width: 18vw;
+    border: 1px solid black;
+    border-radius: 10vw;
+    padding: 0.2vw;
+  }

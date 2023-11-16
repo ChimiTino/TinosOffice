@@ -1,27 +1,249 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Manrope:wght@200;300;400;500;600;700;800&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Pathway+Extreme:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.numbermove{
+    margin-left: 1.9vw;
+}
+.margin{
+    margin-top: 2vw;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1vw;
+    margin-right: 2vw;
+    flex-wrap: wrap;
+}
+.workload{
+    width: 110%;
+    height: 3vw;
+    margin: 2vw;
+    margin-left: -1px;
+    animation-name: load;
+    animation-duration: 0.8s;
+    animation-delay: 0.2s;
+    border-radius: 0.1vw;
+    animation-iteration-count: infinite;
+}
+.profloading{
+    height: 16vw;
+    width: 140%;
+   
+}
+.loadbox1{
+    width: 90%;
+    height: 13vw;
+    margin: 2vw;
+    border-radius: 1vw;
+    animation-name: load;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@keyframes load {
+    0% {background-color:rgb(232, 232, 232) ;}
+    50% {background-color:rgb(192, 192, 192) ;}
+    100% {background-color:rgb(232, 232, 232) ;}
+}
+.row input{
+    padding: 0.5vw;
+    border: none;
+    border-bottom: 2px solid rgb(106, 106, 106);
+}
+option{
+    padding: 1vw;
+}
+.row textarea{
+    resize: none;
+    border: none;
+    border-bottom: black 2px solid;
+    width: 71%;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, 'Manrope',  sans-serif;
+    padding: 0.5vw;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+.block{
+    display: flex;
+    flex-direction: column;
+}
+button{
+    cursor: pointer;
+    text-decoration: none;
+}
+body{
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, 'Manrope',  sans-serif;
+}
+hr{
+    opacity: 0.4;
+
+}
+.workersline{
+    display: none;
+    padding: 1vw;
+    color: rgba(0, 0, 0, 0.297);
+}
+.sideline{
+    border: 1px solid rgba(0, 0, 0, 0.064);
+}
+.green{
+   background-color: rgba(123, 123, 123, 0.792);
+    padding-top: 0vw;   
+    height: 2vw;
+    border-radius: 50%;
+    width: 2vw;
+    margin-top: 0.5vw;
+    margin-right: 0.5vw;
+    text-align: center;
+    color: rgb(232, 232, 232);
+}
+.green p{
+    padding-top: 0.3vw;
+}
+.red{
+    background-color: rgba(163, 163, 163, 0);
+    padding: 1vw;
+    transform: translateX(2vw);
+    padding-left: 1.6vw;
+    width: 3vw;
+    color: rgb(108, 105, 105);
+    border-radius: 0% 10% 10% 50%;
+ 
+ }
+
+
+.header2{
+ font-size: 1.1vw;
+ font-family: 'Pathway Extreme', sans-serif;
+}
+.btn{
+    transform: translateY(0.2vw);
+}
+.font1{
+    font-size: 0.95vw;
+    font-family: 'Pathway Extreme', sans-serif;
+}
+.font2{
+    font-size: 0.8vw;
+    font-family: 'Pathway Extreme', sans-serif;
+}
+.leftmar{
+    margin-left: 1.5vw;
+}
+.filtericon{
+    font-size: 1vw;
+    transform: translateX(0.3vw);
+    transform: translateY(0.2vw);
+}
+input#file-upload-button{
+    border: none;
+}
+.sele{
+    margin: 1vw;
+}
+input:focus{
+    outline: none;
+}
+.loadname{
+    width: 60%;
+    height: 2vw;
+    border-radius: 4vw;
+    background-color: rgba(255, 255, 255, 0.682);
+    margin-left: 20%;
+    margin-top: 0.9vw;
+}
+textarea:focus{
+    outline: none;
+}
+::-webkit-scrollbar{
+    width: 7px;
+    padding: 2px;
+    
+}
+select:focus{
+    outline: none;
+}
+::-webkit-scrollbar-thumb{
+    background: rgba(180, 180, 180, 0.355);
+    border-radius: 30px;
+    transition: 0.4s;
+    border: transparent 1px solid;
+  
+}
+::-webkit-scrollbar-thumb:active{
+    background: rgb(66, 66, 66);
+    transition: 0.4s;
+    border-radius: 30px;
+    border: transparent 1px solid;
+  
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.urgant{
+    background-color: #e06666ff;
+    border-radius: 8vw;
+    text-align: center;
+    width: 9vw;
+    margin-left: 3vw;
+}
+.noNotes{
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+.urgant h3{
+    font-size: 1vw;
+    font-weight: 600;
+    padding: 0.5vw;
+    color: white;
+}
+.itlaic{
+    color: rgba(0, 0, 0, 0.456);
+    transform: scale(0.8);
+    font-weight: 600;
+    margin: 0.2vw;
+}
+.progress h3{
+    font-size: 1vw;
+    font-weight: 600;
+    color: orange;
+    padding: 0.5vw;
+    margin-left: 4vw;
+}
+.button{
+    background-color: #d2d2d2;
+    width: 3vw;
+    margin-left: 2vw;
+    margin-bottom: 1vw;
+    transform: translateY(0.4vw);
+    height: 1.5vw;
+    border-radius: 200px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+}
+.button::before{
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    width: 1vw;
+    height: 1vw;
+    border-radius: 200px;
+    margin: 4px;
+    transition: 0.2s;
+}
+input:checked + .button{
+    background-color: #026a00;
+}
+input:checked + .button::before{
+    transform: translateX(1.5vw);
+}
+#check{
+    display: none;
 }

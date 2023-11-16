@@ -1,19 +1,25 @@
 "use client"
-import Home from '@/Components/Home/Home'
 import React from 'react'
+
+import Worker from '@/Components/Worker/Worker'
+
 import { QueryClientProvider, QueryClient } from 'react-query'
 
 const queryClient = new QueryClient
 
-function page() {
-  return (
+
+function page({params}) {
+
+
+  return(
     <>
     <QueryClientProvider client={queryClient}>
-      <Home/>
+        <Worker params={params}/>
     </QueryClientProvider>
-      
+    
     </>
   )
+
 }
 
 export default page
