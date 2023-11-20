@@ -95,11 +95,13 @@ function Claims({params}) {
         setLoading(false)
       }
 
-  pb.collection('jobs').subscribe('*',  function (e) {
+ 
+    useEffect(()=>{
+ pb.collection('jobs').subscribe('*',  function (e) {
     Filters()
 },
 );
-    useEffect(()=>{
+
        Filters()
        GetWork()
        
