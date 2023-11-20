@@ -41,6 +41,7 @@ function Claims({params}) {
     const[Loading, setLoading] = useState(false)
     const todaysDate = new Date()
     const todaysDateIm =todaysDate.getTime();
+
     const { data: messeges} = GetMessages();
     const { data: workers} = GetWorker();
     
@@ -96,7 +97,7 @@ function Claims({params}) {
         '$autoCancel': false,
          sort: '-created',
             });
-      setRecordedJobs(recordedJobs)
+      setRecordedJobs(i => recordedJobs)
 
     
       const filter = recordedJobs?.filter(i => i.business === params.slug && i.job_completion === false)
@@ -121,11 +122,13 @@ function Claims({params}) {
 
 
 
-  pb.collection('jobs').subscribe('*',  function (e) {
-    Filters()
-},
-);
-    useEffect(()=>{
+  
+     useEffect(()=>{
+
+      pb.collection('jobs').subscribe('*',  function (e) {
+       Filters()
+      },
+      );
        Filters()
     },[])
 const ChangeFilter = (item)=> {
@@ -193,9 +196,9 @@ const ChangeFilter = (item)=> {
         <div className={stylesclaims.leftChanel}>
         <div className={stylesclaims.profilestation}>
         {/* add profilepic */}
-        <img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/>
-          
-          <h2>{authName}</h2>
+        {avatar && <><img className={stylesclaims.avatar} src={`https://panicky-lion.pockethost.io//api/files/_pb_users_auth_/${id}/${avatar}?token=`}/></>}
+
+          {authName && <> <h2>{authName}</h2></>}
            {params.slug === 'everlight' && 
            <div className='leftmar'>
          <div className={stylesclaims.jopbBussiness1}>
@@ -223,7 +226,7 @@ const ChangeFilter = (item)=> {
           return(
             <div key={index} className={stylesclaims.workerContainer}>
             <Link href={`Business/Worker/${items.id}/${params.slug}`}>
-              <div key={index}  className={stylesclaims.workerflex}>
+              <div  className={stylesclaims.workerflex}>
                 <h4 className='font1'>{items.name}</h4>
                 <h6 className='font2 workersline'>|</h6>
                 <div className={recodedJobs?.filter(i => i.workers_on_job[0] === items.id).length === 0 ? 'red': 'green'}>
@@ -234,7 +237,7 @@ const ChangeFilter = (item)=> {
               
               {recodedJobs?.filter(i => i.workers_on_job[0] === items.id).filter(i => i.status !== 'Closed').map((i, index)=>{
               return(
-              <Link href={`Business/SelectJob/${params.slug}/${i.id}`} key={index} >
+              <Link key={index} href={`Business/SelectJob/${params.slug}/${i.id}`} >
                 <div   className={stylesclaims.workersjobs}>
                 <h4 className='font1'>{i.client}</h4>
                 <h5 className='font2'>{i.clientnumber}</h5>
@@ -322,7 +325,7 @@ const ChangeFilter = (item)=> {
             {tog && <div className={stylesclaims.workList}>
             {workers?.map((worker,index)=>{
             return(
-              <div className={stylesclaims.option} onClick={()=> WorkerSelect(worker)} key={index}>
+              <div key={index} className={stylesclaims.option} onClick={()=> WorkerSelect(worker)} >
               <p>
                 {worker.name}
               </p>
@@ -360,9 +363,8 @@ const ChangeFilter = (item)=> {
           <ul className={sorttog ? stylesclaims.filterCont : stylesclaims.filterContnone}>
             {status.map((item,index)=> {
               return(
-                <>
+               
                   <li key={index} onClick={()=> ChangeFilter(item)}>{item}</li>
-                </>
               )
             })}
 
@@ -404,11 +406,11 @@ const ChangeFilter = (item)=> {
                           ) 
                       })}
                       <div className={stylesclaims.status}> <h3>Status: </h3> <p>{items.status}</p></div>
-                      <p className={stylesclaims.time}>
+                      <header className={stylesclaims.time}>
                                
                       { timeDiffD < 14 && timeDiffD > 7  ? <p>{weeksDiffD} Week ago</p> :timeDiffD > 7 ? <p>{weeksDiffD} Weeks ago</p> :  timeDiffD === 1 ? <p> Yesterday</p> : timeDiffD > 1 ? <p>{timeDiffD} Days ago</p> : hoursD===1 ? <p>{hoursD} Hour Ago</p> :  hoursD < 1 ? <p>Just Now</p> : <p>{hoursD} Hours Ago</p> }
                         
-                                             </p>
+                                             </header>
                     </div>
                     <div className={stylesclaims.detailsflex}>
                        <div className={stylesclaims.clientDetals}>
