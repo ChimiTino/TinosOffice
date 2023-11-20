@@ -68,6 +68,8 @@ function Claims({params}) {
     const [excessV, setexcessV] = useState();
     const [eexcess, setEexcess] = useState(false);
 
+    const [disLoa, setDisLoa] = useState(false)
+
 
     const [claimHandlerV, setclaimHandlerV] = useState();
     const [eclaimHandler, setEclaimHandler] = useState(false);
@@ -209,6 +211,8 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
     }
     const createdRecordQuote = await pb.collection('jobs').update(params.id[1], formDataQuote);
     }
+
+    
     async function MakeBeforePictures(e){
     
   
@@ -321,57 +325,54 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
 
 
 
-  async function EditInvoice(invoice){
+  async function EditInvoice(e){
       
-          if (!invoice) {
-            alert("Please fill in the Invoice")
-          } else {
-      
+    setDisLoa(i => false)
+
         const formDataQuote = new FormData();
-        for (let file of invoice) {
+        for (let file of e.target.files) {
           formDataQuote.append('invoice', file);
         }
         const createdRecordQuote = await pb.collection('jobs').update(params.id[1], formDataQuote);
-        }
+    setDisLoa(i => false)
+
   }
 
-  async function EditQuote(Quote){
-      
-          if (!Quote) {
-            alert("Please fill in the Quote")
-          } else {
-        const formDataQuote = new FormData();
-        for (let file of Quote) {
-          formDataQuote.append('quote', file);
-        }
-        const createdRecordQuote = await pb.collection('jobs').update(params.id[1], formDataQuote);
-        }
+  async function EditQuote(e){
+
+  setDisLoa(i => true)
+    const formDataQuote = new FormData();
+    for (let file of e.target.files) {
+      formDataQuote.append('quote', file);
+    }
+    const createdRecordQuote = await pb.collection('jobs').update(params.id[1], formDataQuote);
+    
+  setDisLoa(i => false)
+
   }
 
-  async function Editdamage_report(damage_report){
+  async function Editdamage_report(e){
       
-        if (!damage_report) {
-          alert("Please fill in the damage_report")
-        } else {
+    setDisLoa(i => true)
       const formDatadamage_report = new FormData();
-      for (let file of damage_report) {
+      for (let file of e.target.files) {
         formDatadamage_report.append('damage_report', file);
       }
       const createdRecorddamage_report = await pb.collection('jobs').update(params.id[1], formDatadamage_report);
-      }
+    setDisLoa(i => false)
+
   }
 
-  async function EditCOC(COC){
+  async function EditCOC(e){
       
-      if (!COC) {
-        alert("Please fill in the COC")
-      } else {
+    setDisLoa(i => true)
     const formDataCOC = new FormData();
-    for (let file of COC) {
+    for (let file of e.target.files) {
       formDataCOC.append('coc', file);
     }
     const createdRecordCOC = await pb.collection('jobs').update(params.id[1], formDataCOC);
-    }
+    setDisLoa(i => false)
+    
   }
 
 
@@ -839,23 +840,16 @@ async function DeletEBF(items){
                       <p className={stylesseleJobs.fileX} onClick={()=> DeletFileInvoice()}><BsIcons.BsX/></p>
                     </div>
                     :
-                    <form className={stylesseleJobs.Add}>
-                    <div>
-                    {invoice && 
-                    <button className={stylesseleJobs.fileXon} type='reset' onClick={() => setInvoice()} ><BsIcons.BsX/></button>
-                    }
+                    <>
                     <div className={stylesseleJobs.addfile}>
-                      <label className={stylesseleJobs.addfilel} htmlFor="invoice" style={{display:'flex',flexDirection:'column'}}>
-                     {invoice ? <p className={stylesseleJobs.inp}>{invoiceName}</p>: <>+ Add Invoice</> }
-                     
-                      
-                      <input draggable={true} type='file' className={stylesseleJobs.padddIn} id='invoice' onChange={(e) => MakeInvoice(e)}/>
-                    </label>
-                    </div>
-                    </div>
-                      {invoice && <p className={stylesseleJobs.filebtn} onClick={()=> EditInvoice(invoice)}>Save</p>}
-
-                    </form>
+                              <label htmlFor='invoice' >
+                              <p className={stylesseleJobs.addfilel}>+ Add Invoice</p>
+                                
+                                <input disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='invoice' onChange={(e)=> EditInvoice(e)}/>
+                              </label>
+                      </div>
+                    </>
+                   
                     
                     }
                     
@@ -877,28 +871,23 @@ async function DeletEBF(items){
                        <p className={stylesseleJobs.fileX} onClick={()=> DeletFileQuote()}><BsIcons.BsX/></p>
                     </div>
                     :
-
-                    <form className={stylesseleJobs.Add}>
-                    <div>
-                    {Quote && 
-                    <button className={stylesseleJobs.fileXon} type='reset' onClick={() => setQuote()} ><BsIcons.BsX/></button>
-                    }
+<>
                     <div className={stylesseleJobs.addfile}>
-                      <label className={stylesseleJobs.addfilel} htmlFor="Quote">
-                     {Quote ? <p className={stylesseleJobs.inp}>{QuoteName}</p>: <>+ Add Quote</> }
-                     
+                              <label htmlFor='Quote' >
+                              <p className={stylesseleJobs.addfilel}>+ Add Quote</p>
+                                
+                                <input  disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='Quote' onChange={(e)=> EditQuote(e)}/>
+                              </label>
+                      </div>
                       
-                      <input type='file' style={{display:'none'}} id='Quote' onChange={(e) => MakeQuote(e)}/>
-                    </label>
-                    </div>
-                    </div>
-                      {Quote && <p className={stylesseleJobs.filebtn} onClick={()=> EditQuote(Quote)}>Save</p>}
-
-                    </form>
-                    
+                    </>
                     }
                     
                   </div>
+
+                  
+
+
                   <div className={stylesseleJobs.fileInsert}>
                     <h2>Damage Report</h2>
                     
@@ -914,25 +903,16 @@ async function DeletEBF(items){
                       <p className={stylesseleJobs.fileX} onClick={()=> DeletFiledamage_report()}><BsIcons.BsX/></p>
                     </div>
                     :
+                      <>
+                      <div className={stylesseleJobs.addfile}>
+                              <label htmlFor='damage_report' >
+                              <p className={stylesseleJobs.addfilel}>+ Add Report</p>
+                                
+                              <input  disabled={disLoa} type='file' style={{display:'none'}} id='damage_report' onChange={(e) => Editdamage_report(e)}/>
+                              </label>
+                      </div>
 
-                    <form className={stylesseleJobs.Add}>
-                    <div>
-                    {damage_report && 
-                    <button className={stylesseleJobs.fileXon} type='reset' onClick={() => setdamage_report()} ><BsIcons.BsX/></button>
-                    }
-                    <div className={stylesseleJobs.addfile}>
-                      <label className={stylesseleJobs.addfilel} htmlFor="damage_report">
-                     {damage_report ? <p className={stylesseleJobs.inp}>{damage_reportName}</p>: <>+ Add Report</> }
-                     
-                      
-                      <input type='file' style={{display:'none'}} id='damage_report' onChange={(e) => Makedamage_report(e)}/>
-                    </label>
-                    </div>
-                    </div>
-                      {damage_report && <p className={stylesseleJobs.filebtn} onClick={()=> Editdamage_report(damage_report)}>Save</p>}
-
-                    </form>
-                    
+                    </>
                     }
 
                   </div>
@@ -951,24 +931,15 @@ async function DeletEBF(items){
                       <p className={stylesseleJobs.fileX} onClick={()=> DeletFileCOC()}><BsIcons.BsX/></p>
                     </div>
                     :
-
-                    <form className={stylesseleJobs.Add}>
-                    <div>
-                    {COC && 
-                    <button className={stylesseleJobs.fileXon} type='reset' onClick={() => setCOC()} ><BsIcons.BsX/></button>
-                    }
+                    <>
                     <div className={stylesseleJobs.addfile}>
-                      <label className={stylesseleJobs.addfilel} htmlFor="COC">
-                     {COC ? <p className={stylesseleJobs.inp}>{COCName}</p>: <>+ Add Report</> }
-                     
-                      
-                      <input type='file' style={{display:'none'}} id='COC' onChange={(e) => MakeCOC(e)}/>
-                    </label>
-                    </div>
-                    </div>
-                      {COC && <p className={stylesseleJobs.filebtn} onClick={()=> EditCOC(COC)}>Save</p>}
-
-                    </form>
+                              <label htmlFor='COC' >
+                              <p className={stylesseleJobs.addfilel}>+ Add Report</p>
+                                
+                              <input  disabled={disLoa} type='file' style={{display:'none'}} id='COC' onChange={(e) => EditCOC(e)}/>
+                              </label>
+                      </div>
+                    </>
                     
                     }
                     
@@ -1004,7 +975,7 @@ async function DeletEBF(items){
                               <label htmlFor='after_images' >
                               <p className={stylesseleJobs.addIm}>+ Add Before Images</p>
                                 
-                                <input type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeBeforePictures(e)}/>
+                                <input  disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeBeforePictures(e)}/>
                               </label>
                             </div>
                            } 
@@ -1037,7 +1008,7 @@ async function DeletEBF(items){
                               <label htmlFor='after_images' >
                               <p className={stylesseleJobs.addIm}>+ Add After Images</p>
                                 
-                                <input type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeAfterImages(e)}/>
+                                <input  disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeAfterImages(e)}/>
                               </label>
                             </div>
                            } 
@@ -1170,9 +1141,8 @@ async function DeletEBF(items){
   <ul className={stylesclaims.filterCont}>
     {status.map((item,index)=> {
       return(
-        <>
+       
           <li key={index} onClick={()=> ChangeFilter(item)}>{item}</li>
-        </>
       )
     })}
 

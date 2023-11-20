@@ -41,7 +41,6 @@ function Claims({params}) {
     const[Loading, setLoading] = useState(false)
     const todaysDate = new Date()
     const todaysDateIm =todaysDate.getTime();
-
     const { data: messeges} = GetMessages();
     const { data: workers} = GetWorker();
     
