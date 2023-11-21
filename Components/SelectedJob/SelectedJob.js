@@ -777,7 +777,7 @@ async function DeletEBF(items){
                               </h6>
                               <h6></h6>
                           </div>
-                          { timeDiff < 14 && timeDiff > 7  ? <p>{weeksDiff} Week ago</p> :timeDiff > 7 ? <p>{weeksDiff} Weeks ago</p> :  timeDiff === 1 ? <p>{timeDiff} Yesterday</p> : timeDiff > 1 ? <p>{timeDiff} Days ago</p> : hours===1 ? <p>{hours} Hour Ago</p> :  hours < 1 ? <p>Just Now</p> : <p>{hours} Hours Ago</p> }
+                          { timeDiff < 14 && timeDiff > 7  ? <p>{weeksDiff} Week ago</p> :timeDiff > 7 ? <p>{weeksDiff} Weeks ago</p> :  timeDiff === 1 ? <p>Yesterday</p> : timeDiff > 1 ? <p>{timeDiff} Days ago</p> : hours===1 ? <p>{hours} Hour Ago</p> :  hours < 1 ? <p>Just Now</p> : <p>{hours} Hours Ago</p> }
                         </div>
                         <p className={stylesclaims.messText}>{i.message}</p>
                          
@@ -816,7 +816,7 @@ async function DeletEBF(items){
                     <>
                     <div className={stylesseleJobs.addfile}>
                               <label htmlFor='invoice' >
-                              <p className={stylesseleJobs.addfilel}>+ Add Invoice</p>
+                              <p className={disLoa ? stylesseleJobs.addfileldis : stylesseleJobs.addfilel }>+ Add Invoice</p>
                                 
                                 <input disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='invoice' onChange={(e)=> EditInvoice(e)}/>
                               </label>
@@ -847,7 +847,7 @@ async function DeletEBF(items){
 <>
                     <div className={stylesseleJobs.addfile}>
                               <label htmlFor='Quote' >
-                              <p className={stylesseleJobs.addfilel}>+ Add Quote</p>
+                              <p className={disLoa ? stylesseleJobs.addfileldis : stylesseleJobs.addfilel } >+ Add Quote</p>
                                 
                                 <input disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='Quote' onChange={(e)=> EditQuote(e)}/>
                               </label>
@@ -879,7 +879,7 @@ async function DeletEBF(items){
                       <>
                       <div className={stylesseleJobs.addfile}>
                               <label htmlFor='damage_report' >
-                              <p className={stylesseleJobs.addfilel}>+ Add Report</p>
+                              <p className={disLoa ? stylesseleJobs.addfileldis : stylesseleJobs.addfilel }>+ Add Report</p>
                                 
                               <input disabled={disLoa} type='file' style={{display:'none'}} id='damage_report' onChange={(e) => Editdamage_report(e)}/>
                               </label>
@@ -907,7 +907,7 @@ async function DeletEBF(items){
                     <>
                     <div className={stylesseleJobs.addfile}>
                               <label htmlFor='COC' >
-                              <p className={stylesseleJobs.addfilel}>+ Add Report</p>
+                              <p className={disLoa ? stylesseleJobs.addfileldis : stylesseleJobs.addfilel }>+ Add Report</p>
                                 
                               <input disabled={disLoa} type='file' style={{display:'none'}} id='COC' onChange={(e) => EditCOC(e)}/>
                               </label>
