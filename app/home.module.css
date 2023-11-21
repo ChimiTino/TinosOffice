@@ -26,6 +26,23 @@
     font-size: 1.5vw;
 
 }
+.login{
+    width: 100%;
+    margin: 2vw;
+    margin-top: 1vw;
+    padding: 0.6vw;
+    border-radius: 4vw;
+    border: none;
+    background-color: black;
+    color: white;
+    transition: 0.1s;
+
+}
+.login:hover{
+    background-color: rgb(102, 102, 102);
+    transition: 0.1s;
+
+}
 .logout:hover{
 background-color: rgba(0, 0, 0, 0.152);
 transition: 0.3s;

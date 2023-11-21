@@ -64,6 +64,7 @@ function Claims({params}) {
     }
    
         async function theIntialForm(data){
+        setBusnu(i => Math.random)
 
         setAddTog(false)
 
