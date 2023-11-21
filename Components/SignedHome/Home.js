@@ -37,7 +37,7 @@ useEffect(()=>{
         {business.map((items, index)=>{
             return(
         <div key={index} className={style.business}>
-        <Link href={`/Business/${items.divname}`} >
+        <Link href={`/Business/${items.htmlname}`} >
         <div className={stylesclaims.jopbBussiness1}>
         <img className={stylesclaims.formimgs} src={`https://panicky-lion.pockethost.io//api/files/${items.collectionId}/${items.id}/${items.icon}?token=`} alt='' />
         <h3  className={stylesclaims.akxkx}>  

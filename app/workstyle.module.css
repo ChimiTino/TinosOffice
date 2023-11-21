@@ -73,29 +73,29 @@
 }
 .btnclosed{
     font-weight: 700;
-    font-size: 0.9vw;
+    font-size: 0.97vw;
     color: rgb(229, 229, 229);
     border: none;
     border-radius: 0.5vw;
     font-weight: 500;
     margin-top: 1vw;
     padding: 0.5vw;
-    background-color: rgb(30, 161, 43);
+    background-color: rgb(126, 180, 131);
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, 'Manrope',  sans-serif;
    
 }
 .btn{
     font-weight: 700;
-    font-size: 0.9vw;
-    font-weight: 500;
+    font-size: 0.96vw;
+    font-weight: 700;
 
     color: rgb(229, 229, 229);
     padding: 0.5vw;
 
     border: none;
     border-radius: 0.5vw;
-    background-color: rgb(135, 135, 135);
+    background-color: rgb(194, 194, 194);
     
 }
 .header{
@@ -118,7 +118,8 @@
     font-size: 0.8vw;
     margin: 0.2vw;
     border-radius: 0.2vw;
-    font-weight: 200;
+    font-weight: 400;
+    line-height: 1.2vw;
     cursor: pointer;
     list-style: none;
     padding: 0.5vw;

@@ -44,7 +44,7 @@ function Claims({params}) {
 
   
       async function Filters() {
-     setLoading(i => true)
+     setLoading(true)
       const recordedJobs = await pb.collection('jobs').getFullList({
         '$autoCancel': false,
         sort: '-created',
@@ -68,7 +68,7 @@ function Claims({params}) {
           setGetAva(i => getAvatar.avatar)
           setAuthName(i => getAvatar.name)
 
-        setLoading(i => false)
+        setLoading(false)
       
   }
 
@@ -180,7 +180,6 @@ function Claims({params}) {
                   )
                 })}
                 </ul>
-              <button className={style.btn}>Sort</button>
               <button onClick={()=> AllClosed()} className={style.btnclosed} >Closed</button>
 
             </div>
@@ -268,7 +267,7 @@ function Claims({params}) {
             </div>
 
             <div className={stylesclaims.workerContainer}> <hr className='sideline'/>
-            <h2 className='header2'> Workers</h2>
+            <h2 className='header2'> Professionals</h2>
             
             {workers?.map((items,index)=>{
           
@@ -278,12 +277,12 @@ function Claims({params}) {
                   <div key={index}  className={stylesclaims.workerflex}>
                     <h4 className='font1'>{items.name}</h4>
                     <h6 className='font2 workersline'>|</h6>
-                    <div className={recodedJobs?.filter(i => i.workers_on_job[0] === items.id).length === 0 ? 'red': 'green'}>
-                    <p className='font2'>{recodedJobs?.filter(i => i.workers_on_job[0] === items.id).length}</p>
+                    <div className={recodedJobs?.filter(i => i.workers_on_job[0] === items.id && i.status !== 'Closed').length === 0 ? 'red': 'green'}>
+                    <p className='font2'>{recodedJobs?.filter(i => i.workers_on_job[0] === items.id  && i.status !== 'Closed').length}</p>
                     </div>
                   </div>
                 </Link>
-                  {recodedJobs?.filter(i => i.workers_on_job[0] === items.id).map((i, index)=>{
+                  {recodedJobs?.filter(i => i.workers_on_job[0] === items.id && i.status !== 'Closed').map((i, index)=>{
                   return(
                     <Link key={index}  href={`Business/SelectJob/${params.id[1]}/${i.id}`}>
                     <div  className={stylesclaims.workersjobs}>
@@ -304,12 +303,12 @@ function Claims({params}) {
 
           
             </div>        
-
-          <div className={stylesseleJobs.mainChanel}>
+          <Link href={`Business/`}></Link>
+          <div className={stylesseleJobs.mainChanel} >
 
           
             <div className={ addtog ? stylesclaims.InitialForm : stylesclaims.noDis}>
-            <p className={stylesclaims.exit}  onClick={()=> setAddTog(i => !i)} ><BiIcons.BiX/></p>
+            <p className={stylesclaims.exit}  onClick={()=> setAddTog(!i)} ><BiIcons.BiX/></p>
             <div className={stylesclaims.formHead}>
               <h1>Add Job</h1>
               {params.slug === 'everlight' ?
@@ -348,7 +347,7 @@ function Claims({params}) {
               </div>
             </div>
 
-            <button className={stylesclaims.addJobbtn} onClick={()=> setAddTog(i => !i)}>Add Job</button>
+            <button className={stylesclaims.addJobbtn} onClick={()=> setAddTog(!i)}>Add Job</button>
           </div>
               
                 {filterdJobs?.map((items,index)=>{

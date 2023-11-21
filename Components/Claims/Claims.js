@@ -43,7 +43,7 @@ function Claims({params}) {
     const todaysDateIm =todaysDate.getTime();
     const { data: messeges} = GetMessages();
     const { data: workers} = GetWorker();
-    
+    const [closedTab, setClosedTab]= useState(false)
     const[avatar, setGetAva] = useState("")
     const[authName, setAuthName] = useState("")
     // const { data: recordedJobs} = GetJobs()
@@ -107,8 +107,6 @@ function Claims({params}) {
       const completed = recordedJobs?.filter(i => i.job_completion === true && i.business === params.slug)
        setCompleted(completed);
       
-
-
        const getAvatar = await pb.collection('users').getOne(id , {
         '$autoCancel': false,
             expand:'avatar'
@@ -130,6 +128,9 @@ function Claims({params}) {
       );
        Filters()
     },[])
+
+
+    
 const ChangeFilter = (item)=> {
   const filter = recodedJobs?.filter(i => i.business === params.slug && i.job_completion === false)
   setFilterdJob(filter)
@@ -137,6 +138,11 @@ const ChangeFilter = (item)=> {
 
   if(item !== 'All'){
     setFilterdJob(filter.filter(i => i.status === item));
+  }
+  if (item === 'Closed') {
+    setClosedTab(true)
+  }else{
+    setClosedTab(false)
   }
 
   
@@ -225,10 +231,10 @@ const ChangeFilter = (item)=> {
           return(
             <div key={index} className={stylesclaims.workerContainer}>
             <Link href={`Business/Worker/${items.id}/${params.slug}`}>
-              <div  className={stylesclaims.workerflex}>
+            <div key={index}  className={stylesclaims.workerflex}>
                 <h4 className='font1'>{items.name}</h4>
                 <h6 className='font2 workersline'>|</h6>
-                <div className={recodedJobs?.filter(i => i.workers_on_job[0] === items.id).length === 0 ? 'red': 'green'}>
+                <div className={jobLength?.filter(i => i.status !== 'Closed').length === 0 ? 'red': 'green'}>
                 <p className='font2'>{jobLength.filter(i => i.status !== 'Closed').length}</p>
                </div>
               </div>
@@ -236,7 +242,7 @@ const ChangeFilter = (item)=> {
               
               {recodedJobs?.filter(i => i.workers_on_job[0] === items.id).filter(i => i.status !== 'Closed').map((i, index)=>{
               return(
-              <Link key={index} href={`Business/SelectJob/${params.slug}/${i.id}`} >
+                <Link href={`Business/SelectJob/${params.slug}/${i.id}`} key={index} >
                 <div   className={stylesclaims.workersjobs}>
                 <h4 className='font1'>{i.client}</h4>
                 <h5 className='font2'>{i.clientnumber}</h5>
@@ -381,7 +387,8 @@ const ChangeFilter = (item)=> {
         <button className={stylesclaims.addJobbtn} onClick={()=> setAddTog(i => !i)}>Add Job</button>
       </div>
           
-            {filterdJobs?.filter(i=> i.status !== 'Closed').map((items,index)=>{
+        {closedTab ? 
+        <>{filterdJobs?.filter(i=> i.status === 'Closed').map((items,index)=>{
               const createdDate = new Date(items?.created)
               const createdDateIm = createdDate.getTime()
               const msDiff = todaysDateIm - createdDateIm
@@ -460,7 +467,7 @@ const ChangeFilter = (item)=> {
                               </h6>
                               <h6></h6>
                           </div>
-                          { timeDiff < 14 && timeDiff > 7  ? <p>{weeksDiff} Week ago</p> :timeDiff > 7 ? <p>{weeksDiff} Weeks ago</p> :  timeDiff === 1 ? <p>{timeDiff} Yesterday</p> : timeDiff > 1 ? <p>{timeDiff} Days ago</p> : hours===1 ? <p>{hours} Hour Ago</p> :  hours < 1 ? <p>Just Now</p> : <p>{hours} Hours Ago</p> }
+                          { timeDiff < 14 && timeDiff > 7  ? <p>{weeksDiff} Week ago</p> :timeDiff > 7 ? <p>{weeksDiff} Weeks ago</p> :  timeDiff === 1 ? <p> Yesterday</p> : timeDiff > 1 ? <p>{timeDiff} Days ago</p> : hours===1 ? <p>{hours} Hour Ago</p> :  hours < 1 ? <p>Just Now</p> : <p>{hours} Hours Ago</p> }
 
                         </div>
 
@@ -495,7 +502,126 @@ const ChangeFilter = (item)=> {
                 
                 
               )
-            })}
+         })}</> : 
+        
+        <>{filterdJobs?.filter(i=> i.status !== 'Closed').map((items,index)=>{
+              const createdDate = new Date(items?.created)
+              const createdDateIm = createdDate.getTime()
+              const msDiff = todaysDateIm - createdDateIm
+              const timeDiffD = Math.round(msDiff / (24 * 60 * 60 * 1000 )) 
+              const hoursD = Math.round(msDiff / ( 60 * 60 * 1000 ))
+              const weeksDiffD = Math.round(timeDiffD/7)
+              
+              return(
+                
+                  <div key={index} className={addtog ?stylesclaims.filterback  :stylesclaims.jobCardUrgant }>
+
+                  <div className={ stylesclaims.jobCardFlex}>
+                    <div className={stylesclaims.details}>
+                    <div className={stylesclaims.jobHeader}>
+                      {workers?.filter(i => i.id === items.workers_on_job[0]).map((i,index)=>{
+                          return(
+                            <div className={stylesclaims.jobWorker} key={index}>
+                                <img className={stylesclaims.workericon} alt='worker' src='/work-character-solid-icon-illustration-office-workers-teachers-judges-police-artists-employees-free-vector.jpg'/>
+                                <h4 className={stylesclaims.workerName}>{i.name}</h4>
+                            </div>
+                          ) 
+                      })}
+                      <div className={stylesclaims.status}> <h3>Status: </h3> <p>{items.status}</p></div>
+                      <header className={stylesclaims.time}>
+                               
+                      { timeDiffD < 14 && timeDiffD > 7  ? <p>{weeksDiffD} Week ago</p> :timeDiffD > 7 ? <p>{weeksDiffD} Weeks ago</p> :  timeDiffD === 1 ? <p> Yesterday</p> : timeDiffD > 1 ? <p>{timeDiffD} Days ago</p> : hoursD===1 ? <p>{hoursD} Hour Ago</p> :  hoursD < 1 ? <p>Just Now</p> : <p>{hoursD} Hours Ago</p> }
+                        
+                                             </header>
+                    </div>
+                    <div className={stylesclaims.detailsflex}>
+                       <div className={stylesclaims.clientDetals}>
+                            <div className={stylesclaims.clientrow}>
+                                <h5 className={stylesclaims.clienttitels}>Claim Number:</h5> <p>{items.clientnumber}</p>
+                              </div>
+                              <div className={stylesclaims.clientrow}>
+                                <h5 className={stylesclaims.clienttitels}>Client:</h5> <p>{items.client}</p>
+                              </div>
+                              <div className={stylesclaims.clientrow}>
+                                <h5 className={stylesclaims.clienttitels}>Address:</h5> <p>{items.address}</p>
+                              </div>
+                        </div>
+                          
+                          <div className={stylesclaims.jobDescription}>
+                            <h5 className={stylesclaims.clienttitels}>Job Descrption:</h5> <p>{items.job_description}</p>
+                          </div>
+                    </div>
+                   
+                    </div>
+                        <hr/>
+
+                    <div className={stylesclaims.messegesContainer}>
+                     <h5>Notes:</h5>
+                     <div className={stylesclaims.messeges}>
+                     {messeges?.filter(i => i.job === items.id).length===0 && <p className='noNotes'>No Recorded Notes</p>}
+                      {messeges?.filter(i => i.job === items.id).map((i,index)=>{
+                      const createdDateM = new Date(i.created)
+                      const createdDateMIm = createdDateM.getTime() 
+                      const msDiff = todaysDateIm - createdDateMIm
+                      const timeDiff = Math.round(msDiff / (24 * 60 * 60 * 1000 )) 
+                      const hours = Math.round(msDiff / ( 60 * 60 * 1000 ))
+                      const weeksDiff = Math.round(timeDiff/7)
+                      return(
+                        <div key={index} className={stylesclaims.messege}>
+                        
+                          <div className={stylesclaims.messageheader}>
+                          <div className={stylesclaims.datclientnumberV}>
+                              <h6 className={stylesclaims.messName}>{i.users_name}
+                              <p className='itlaic'>
+                                {items && createdDateM.getDate()  < 10 && createdDateM.getMonth()+1  < 10 ? <> 0{createdDateM.getDate()} / 0{createdDateM.getMonth()+1} / {createdDateM.getFullYear()} </>
+                                             :  createdDateM.getDate() < 10 && createdDateM.getMonth()+1  > 10 ? <> 0{createdDateM.getDate()} / {createdDateM.getMonth()+1} / {createdDateM.getFullYear()} </>
+                                             :   createdDateM.getDate() > 10 && createdDateM.getMonth()+1  < 10 ? <> {createdDateM.getDate()} / 0{createdDateM.getMonth()+1} / {createdDateM.getFullYear()} </>
+                                             :    <> {createdDateM.getDate()} / {createdDateM.getMonth()+1} / {createdDateM.getFullYear()}</>
+                                             }
+                                  </p>
+
+                              </h6>
+                              <h6></h6>
+                          </div>
+                          { timeDiff < 14 && timeDiff > 7  ? <p>{weeksDiff} Week ago</p> :timeDiff > 7 ? <p>{weeksDiff} Weeks ago</p> :  timeDiff === 1 ? <p> Yesterday</p> : timeDiff > 1 ? <p>{timeDiff} Days ago</p> : hours===1 ? <p>{hours} Hour Ago</p> :  hours < 1 ? <p>Just Now</p> : <p>{hours} Hours Ago</p> }
+
+                        </div>
+
+
+                          <p className={stylesclaims.messText}>{i.message}</p>
+                          
+                        </div>
+                      )
+                    })}
+
+                    </div>
+                    </div>
+                    
+                 </div>
+                    <div className={stylesclaims.buttonList}>
+                      <div>
+                      {addtog ? 
+                      <button  className={stylesclaims.view}>
+                       View 
+                      </button>:
+                       <Link href={`Business/SelectJob/${params.slug}/${items.id}`}> 
+                      <button  className={stylesclaims.view}>
+                       View 
+                      </button>
+                      </Link>
+                      }
+                      </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                
+              )
+         })}</>}
+
+
+            
 
       </div>
   
