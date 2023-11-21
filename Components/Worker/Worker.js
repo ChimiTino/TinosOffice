@@ -44,7 +44,6 @@ function Claims({params}) {
 
   
       async function Filters() {
-     setLoading(true)
       const recordedJobs = await pb.collection('jobs').getFullList({
         '$autoCancel': false,
         sort: '-created',
@@ -58,17 +57,6 @@ function Claims({params}) {
         const WorkersJob = recordedJobs?.filter(i=> i.workers_on_job[0] === params.id[0]) 
         setWorkersJob(WorkersJob)
 
-
-        
-       const getAvatar = await pb.collection('users').getOne(id , {
-        '$autoCancel': false,
-            expand:'avatar'
-      })
-    
-          setGetAva(i => getAvatar.avatar)
-          setAuthName(i => getAvatar.name)
-
-        setLoading(false)
       
   }
 
@@ -93,7 +81,16 @@ function Claims({params}) {
             '$autoCancel': false,
             expand:""
         });
-        setWork(recordedMess);    
+        setWork(recordedMess);  
+           
+       const getAvatar = await pb.collection('users').getOne(id , {
+        '$autoCancel': false,
+            expand:'avatar'
+      })
+    
+        setGetAva(i => getAvatar.avatar)
+          setAuthName(i => getAvatar.name)
+
         setLoading(false)
       }
 

@@ -38,7 +38,6 @@ function Claims({params}) {
     const [workname,  setWorkname] = useState("Choose Worker")
     const[recodedJobs, setRecordedJobs] = useState([])
     const[competed, setCompleted] = useState([])
-    const[Loading, setLoading] = useState(false)
     const todaysDate = new Date()
     const todaysDateIm =todaysDate.getTime();
     const { data: messeges} = GetMessages();
@@ -56,6 +55,7 @@ function Claims({params}) {
     const [addtog, setAddTog] = useState(false);
     const [sorttog,setsorttog] = useState(false);
     const [businessno, setbusinessno] = useState()
+    const[Loading, setLoading] = useState(false)
 
     const WorkerSelect = (worker) =>{
       setTog(false)
@@ -120,17 +120,9 @@ function Claims({params}) {
 
 
   
-     useEffect(()=>{
-
-      pb.collection('jobs').subscribe('*',  function (e) {
-       Filters()
-      },
-      );
-       Filters()
-    },[])
 
 
-    
+
 const ChangeFilter = (item)=> {
   const filter = recodedJobs?.filter(i => i.business === params.slug && i.job_completion === false)
   setFilterdJob(filter)
@@ -150,6 +142,14 @@ const ChangeFilter = (item)=> {
   
 
 
+     useEffect(()=>{
+
+      pb.collection('jobs').subscribe('*',  function (e) {
+       Filters()
+      },
+      );
+       Filters()
+    },[])
 
 
     return (
