@@ -46,7 +46,7 @@ export default function Home() {
     <SHome logout={logout}/>
     </>
     : 
-    <html className={style.background}>
+    <div className={style.background}>
 
     
 
@@ -65,7 +65,7 @@ export default function Home() {
    </div>
    </div>
 
-</html>
+</div>
 
     }
   </>

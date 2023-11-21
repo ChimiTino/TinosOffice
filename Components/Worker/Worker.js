@@ -40,10 +40,11 @@ function Claims({params}) {
     const [Loading, setLoading] = useState(false);
     const[avatar, setGetAva] = useState("");
     const[authName, setAuthName] = useState("");
+    const [closedTab, setClosedTab] = useState(false)
 
   
       async function Filters() {
-     setLoading(true)
+     setLoading(i => true)
       const recordedJobs = await pb.collection('jobs').getFullList({
         '$autoCancel': false,
         sort: '-created',
@@ -66,13 +67,14 @@ function Claims({params}) {
     
           setGetAva(i => getAvatar.avatar)
           setAuthName(i => getAvatar.name)
-        setLoading(false)
+
+        setLoading(i => false)
       
   }
 
   
   const ChangeFilter = (item)=> {
-    
+    setClosedTab(i => false)
     const WorkersJob = recodedJobs?.filter(i=> i.workers_on_job[0] === params.id[0]) 
     setWorkersJob(WorkersJob)
   
@@ -80,9 +82,9 @@ function Claims({params}) {
       setWorkersJob(WorkersJob.filter(i => i.status === item));
     }
   }
+
   const  AllClosed = ()=> {
-    const WorkersJob = recodedJobs?.filter(i=> i.workers_on_job[0] === params.id[0]) 
-    setWorkersJob(WorkersJob.filter(i => i.status === 'Closed'))
+   setClosedTab(i => true)
   }
 
   async function GetWork() {
@@ -172,9 +174,9 @@ function Claims({params}) {
               <ul className={style.filterCont}>
                 {status.map((item,index)=> {
                   return(
-                    <>
+                    
                       <li className={style.list} key={index} onClick={()=> ChangeFilter(item)}>{item}</li>
-                    </>
+                
                   )
                 })}
                 </ul>
@@ -182,7 +184,33 @@ function Claims({params}) {
               <button onClick={()=> AllClosed()} className={style.btnclosed} >Closed</button>
 
             </div>
-            <div className={style.job}>
+            {closedTab ? <>
+              <div className={style.job}>
+              {WorkersJob?.filter(i => i.status === 'Closed')?.map((items,index) =>{
+                return(
+
+                  <Link href={`Business/SelectJob/${params.id[1]}/${items.id}`} key={index}>
+                    <div className={style.JobContainer}>
+                    <div className={style.row}>
+                    {items.business === 'everlight'&& <div className='row'><img src='/bitmap.png' alt=''/> <h6 className={style.business}>Everlight Plumbing And Property Maintenance</h6></div>}
+                    {items.business === 'proleak'&& <div className='row'><img src='/cwscsc.png' alt=''/> <h6 className={style.business}>Proleak Plumbing And Leak Detection</h6></div>}
+                      <div className={style.item}><h3>Status: </h3><h4 style={{color:'orange'}}> {items.status}</h4></div>
+                      <div className={style.item}><h3>Client: </h3><h4> {items.client}</h4></div>
+                      <div className={style.item}><h3>Client Number: </h3><h4> {items.clientnumber}</h4></div>
+                      <div className={style.item}><h3>Address: </h3><h4>{items.address}</h4></div>
+                      </div>
+                      
+                    <div className={style.rowdescr}>
+                      <div className={style.items}><h3>Job Description: </h3><h4>{items.job_description}</h4></div>
+                    </div>
+                    </div>
+                    </Link>
+                )
+            })}
+            </div>
+            </>
+            :
+             <div className={style.job}>
               {WorkersJob?.filter(i => i.status !== 'Closed')?.map((items,index) =>{
                 return(
 
@@ -205,6 +233,9 @@ function Claims({params}) {
                 )
             })}
             </div>
+            }
+
+           
             
             </div>
             

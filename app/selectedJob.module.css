@@ -441,6 +441,16 @@ transition: 0.2s;
     transition: 0.3s;
     background-color: rgb(123, 123, 123);
 }
+.disaddfile{
+    border-radius: 0.5vw;
+    border: 1px rgba(128, 128, 128, 0) solid;
+    transition: 0.3s;
+    text-align: center;
+    background-color: rgb(201, 201, 201);
+    cursor: not-allowed;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 .addfile{
     border-radius: 0.5vw;
     border: 1px rgba(128, 128, 128, 0) solid;
@@ -448,14 +458,12 @@ transition: 0.2s;
     text-align: center;
     background-color: rgb(201, 201, 201);
     cursor: pointer;
-    
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .addfilel{
     padding: 2vw;
     display: block;
-    cursor: pointer;
     font-size: 0.8vw;
    
 }

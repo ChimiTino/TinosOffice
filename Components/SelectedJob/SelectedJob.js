@@ -327,15 +327,13 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
 
   async function EditInvoice(e){
       
-    setDisLoa(i => false)
-
+        
         const formDataQuote = new FormData();
         for (let file of e.target.files) {
           formDataQuote.append('invoice', file);
         }
         const createdRecordQuote = await pb.collection('jobs').update(params.id[1], formDataQuote);
-    setDisLoa(i => false)
-
+        
   }
 
   async function EditQuote(e){
@@ -365,13 +363,12 @@ const recordedMess = await pb.collection('jobs').getOne(`${params.id[1]}`,{
 
   async function EditCOC(e){
       
-    setDisLoa(i => true)
+     
     const formDataCOC = new FormData();
     for (let file of e.target.files) {
       formDataCOC.append('coc', file);
     }
     const createdRecordCOC = await pb.collection('jobs').update(params.id[1], formDataCOC);
-    setDisLoa(i => false)
     
   }
 
@@ -463,30 +460,7 @@ async function DeletEBF(items){
       const MakeStatus = useCallback(() => {
           setEStatus(i => !i)
       },[]);
-    
-    function  MakeInvoice(e){
-      setInvoice(e.target.files)
-      setInvoiceName(e.target.files[0].name)
-
-    }
-
-    function  MakeQuote(e){
-          setQuote(e.target.files)
-          setQuoteName(e.target.files[0].name)
-
-        }
-
-    function  Makedamage_report(e){
-          setdamage_report(e.target.files)
-          setdamage_reportName(e.target.files[0].name)
-
-        }
-
-    function  MakeCOC(e){
-          setCOC(e.target.files)
-          setCOCName(e.target.files[0].name)
-
-        }
+  
 
 
 
@@ -845,7 +819,7 @@ async function DeletEBF(items){
                               <label htmlFor='invoice' >
                               <p className={stylesseleJobs.addfilel}>+ Add Invoice</p>
                                 
-                                <input disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='invoice' onChange={(e)=> EditInvoice(e)}/>
+                                <input type='file' style={{display:'none'}} multiple={true} id='invoice' onChange={(e)=> EditInvoice(e)}/>
                               </label>
                       </div>
                     </>
@@ -876,7 +850,7 @@ async function DeletEBF(items){
                               <label htmlFor='Quote' >
                               <p className={stylesseleJobs.addfilel}>+ Add Quote</p>
                                 
-                                <input  disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='Quote' onChange={(e)=> EditQuote(e)}/>
+                                <input type='file' style={{display:'none'}} multiple={true} id='Quote' onChange={(e)=> EditQuote(e)}/>
                               </label>
                       </div>
                       
@@ -908,7 +882,7 @@ async function DeletEBF(items){
                               <label htmlFor='damage_report' >
                               <p className={stylesseleJobs.addfilel}>+ Add Report</p>
                                 
-                              <input  disabled={disLoa} type='file' style={{display:'none'}} id='damage_report' onChange={(e) => Editdamage_report(e)}/>
+                              <input type='file' style={{display:'none'}} id='damage_report' onChange={(e) => Editdamage_report(e)}/>
                               </label>
                       </div>
 
@@ -936,7 +910,7 @@ async function DeletEBF(items){
                               <label htmlFor='COC' >
                               <p className={stylesseleJobs.addfilel}>+ Add Report</p>
                                 
-                              <input  disabled={disLoa} type='file' style={{display:'none'}} id='COC' onChange={(e) => EditCOC(e)}/>
+                              <input type='file' style={{display:'none'}} id='COC' onChange={(e) => EditCOC(e)}/>
                               </label>
                       </div>
                     </>
@@ -975,7 +949,7 @@ async function DeletEBF(items){
                               <label htmlFor='after_images' >
                               <p className={stylesseleJobs.addIm}>+ Add Before Images</p>
                                 
-                                <input  disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeBeforePictures(e)}/>
+                                <input type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeBeforePictures(e)}/>
                               </label>
                             </div>
                            } 
@@ -1008,7 +982,7 @@ async function DeletEBF(items){
                               <label htmlFor='after_images' >
                               <p className={stylesseleJobs.addIm}>+ Add After Images</p>
                                 
-                                <input  disabled={disLoa} type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeAfterImages(e)}/>
+                                <input type='file' style={{display:'none'}} multiple={true} id='after_images' onChange={(e) => MakeAfterImages(e)}/>
                               </label>
                             </div>
                            } 

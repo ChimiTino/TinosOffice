@@ -43,7 +43,7 @@ transition: 0.3s;
 }
 .background{
     background-color: rgb(230, 230, 230);
-    height: fit-content;
+    height: 200vw;
     font-family: 'Pathway Extreme', sans-serif;
 
     padding-top: 3vw;
